@@ -214,6 +214,32 @@
 (add-hook 'markdown-mode-hook (lambda () (set-fill-column 119)))
 (add-to-list 'ac-modes 'markdown-mode)
 
+;; Custom major mode for apptainer def files
+(define-derived-mode apptainerdef-mode prog-mode "apptainerdef"
+  "Major mode for Apptainer def files."
+  (setq comment-start-skip "#")
+  (setq comment-start "# ")
+  (setq comment-end "")
+  (modify-syntax-entry ?# "<")
+  (modify-syntax-entry ?\n ">")
+  (font-lock-add-keywords 'apptainerdef-mode
+                          '(("^BootStrap:*" . font-lock-preprocessor-face)
+                            ("^From:*" . font-lock-preprocessor-face)
+                            ("^%arguments$" . font-lock-type-face)
+                            ("^%environment$" . font-lock-type-face)
+                            ("^%files$" . font-lock-type-face)
+                            ("^%help$" . font-lock-type-face)
+                            ("^%labels$" . font-lock-type-face)
+                            ("^%post$" . font-lock-type-face)
+                            ("^%runscript$" . font-lock-type-face)
+                            ("^%setup$" . font-lock-type-face)
+                            ("^%startscript$" . font-lock-type-face)
+                            ("^%test$" . font-lock-type-face)
+                            ))
+  )
+(add-to-list 'auto-mode-alist '("\\.def\\'" . apptainerdef-mode))
+(add-hook 'apptainerdef-mode-hook 'font-lock-fontify-buffer)
+
 ;; Load local configuration file if any
 
 (load "~/.emacs_local" 1)
