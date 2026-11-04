@@ -213,3 +213,7 @@
 (add-hook 'markdown-mode-hook 'font-lock-fontify-buffer)
 (add-hook 'markdown-mode-hook (lambda () (set-fill-column 119)))
 (add-to-list 'ac-modes 'markdown-mode)
+
+;; Load local configuration file if any
+
+(load "~/.emacs_local" 1)
