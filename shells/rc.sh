@@ -52,5 +52,9 @@ elif [ "$(uname -o)" = "GNU/Linux" ]; then
     alias l="ls -lh --group-directories-first --color=auto"
 fi
 
+# Tmux configuration
+export TMUX_BAR_BG="#8B0000"
+export TMUX_BAR_FG="#FFE4E1"
+
 # Homebrew configuration
 HOMEBREW_NO_ENV_HINTS=1
